@@ -39,7 +39,7 @@ function renderPage() {
 
 function bindEvent() {
   addBtn.addEventListener('click', addTransferDetail);
-  submitBtn.addEventListener('click', submitTransfer);
+  submitBtn.addEventListener('click', () => submitTransfer());
   resultDialogBtn.addEventListener('click', gotoTransferResult);
 }
 
@@ -52,8 +52,12 @@ function generateOutDetailNo() {  // 简单实现随机生成明细单号
 }
 
 function randomInRange(from, to) {
-  var r = Math.random();
-  return Math.floor(r * (to - from) + from);
+  const range = to - from;
+  const randomBuffer = new Uint32Array(1);
+  const crypto = window.crypto || window.msCrypto;
+  crypto.getRandomValues(randomBuffer);
+  const randomNumber = randomBuffer[0] / (0xffffffff + 1);
+  return Math.floor(randomNumber * range + from);
 }
 
 function addTransferDetail() {
