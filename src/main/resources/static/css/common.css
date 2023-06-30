@@ -43,7 +43,7 @@ a.disabled:hover{text-decoration:none;}
 .tl{text-align:left!important;}.tc{text-align:center!important;}.tr{text-align:right!important;}
 .fl{float:left!important;}.fr{float:right!important;}
 .vt{vertical-align:top;}.vm{vertical-align:middle;}.vb{vertical-align:bottom;}
-.vs{color:#E0E0E0;margin:0 15px;font-family:arial sans-serif;} /* 垂直分隔线 */
+.vs{color:#E0E0E0;margin:0 15px;font-family:arial, sans-serif;} /* 垂直分隔线 */
 .hr{height:1px;margin:32px 0;background:#EEE;overflow:hidden;} /* 水平分隔线 */
 
 .np{padding:0!important;}  /* 重置内边距 */
@@ -243,7 +243,7 @@ a.disabled:hover{text-decoration:none;}
 /* 消息提示*/
 .alert-msg{padding:12px 50px 12px 24px;margin-bottom:24px;position:relative;*zoom:1;background:#f6fbff;border-width:1px;border-style:solid;border-radius:4px;}
 .alert-msg h4{font-weight:700;}
-.alert-msg .ico-cls{color:#999;font-size:18px;font-family:\5B8B\4F53 sans-serif;line-height:18px;position:absolute;right:24px;top:50%;margin-top:-9px;text-decoration:none;}
+.alert-msg .ico-cls{color:#999;font-size:18px;font-family:\5B8B\4F53, sans-serif;line-height:18px;position:absolute;right:24px;top:50%;margin-top:-9px;text-decoration:none;}
 .alert-msg .ico-cls:hover{color:#333;text-decoration:none;}
 .alert-msg.with-icon{padding:12px 48px;}
 .alert-msg.with-icon .ico-msg-s{position:absolute;left:20px;top:50%;margin-top:-9px;}
@@ -275,7 +275,7 @@ a.disabled:hover{text-decoration:none;}
 .form-item{margin-bottom:24px;}
 .form-item .label{float:left;width:100px;padding-top:9px;position:relative;}
 .form-item .desc{float:left;width:384px;margin-left:20px;padding-top:9px;position:relative;}
-.form-item .label .required{position:absolute;left:-10px;top:10px;color:#e15f63;font-family:SimSun sans-serif;}
+.form-item .label .required{position:absolute;left:-10px;top:10px;color:#e15f63;font-family:SimSun, sans-serif;}
 .form-item .element{margin-left:100px;min-height:42px;height:auto!important;height:42px;}
 .form-item .element .tel-pre{width:30px;margin-right:4px;line-height:40px;} /* 电话号码前缀号 */
 .form-item .element .tel-num{width:214px;} /* 电话号码 */
@@ -776,7 +776,7 @@ form button:disabled {background:#ccf3dc;border-color:#ccf3dc;pointer-events: no
 .upload-box .upload-view li .pic:hover{text-decoration:none;}
 .upload-box .upload-view li .pic img{width:64px;height:64px;border-radius:4px;}
 .upload-box .upload-view li .des{display:block;height:22px;margin-top:6px;overflow:hidden;}
-.upload-box .upload-view li .des .required{color:#e15f63;font-family:SimSun sans-serif;margin-right:5px;}
+.upload-box .upload-view li .des .required{color:#e15f63;font-family:SimSun, sans-serif;margin-right:5px;}
 .upload-box .upload-view li .del{display:none;width:18px;height:18px;position:absolute;right:-9px;top:-9px;text-indent:-999px;overflow:hidden;background-position:-105px -166px;}
 .upload-box .upload-view li:hover .del{display:block;}
 .upload-box .upload-view.upload-view-grid{margin-top:-10px;}
@@ -842,7 +842,7 @@ form button:disabled {background:#ccf3dc;border-color:#ccf3dc;pointer-events: no
 .status-list li p{color:#999;}
 .status-list li .opt{position:absolute;top:-8px;right:0;}
 .status-list li .opt.opt-top{top:-8px;}
-.status-list li .ico-dot{position:absolute;top:-8px;left:-32px;color:#E0E0E0;font-size:24px;font-family:arial sans-serif;z-index:11;}
+.status-list li .ico-dot{position:absolute;top:-8px;left:-32px;color:#E0E0E0;font-size:24px;font-family:arial, sans-serif;z-index:11;}
 .status-list li.selected{color:#333;}
 .status-list li.selected .event,.status-list li.selected .ico-dot{color:#00c250;}
 .status-list li.last{padding-bottom:17px;border-color:transparent;}
@@ -886,7 +886,7 @@ form button:disabled {background:#ccf3dc;border-color:#ccf3dc;pointer-events: no
 /*挂件工具*/
 .pendant{position:fixed;right:5px;bottom:170px;z-index:1001;}
 .pendant .wrap{width:40px;margin:0;}
-.pendant .ico-feed{color:#ff0000;position:absolute;top:-19px;right:-7px;font-size:22px;font-family:arial sans-serif;}
+.pendant .ico-feed{color:#ff0000;position:absolute;top:-19px;right:-7px;font-size:22px;font-family:arial, sans-serif;}
 .pendant .mobile-data,.pendant .gain-act,.pendant .feed-back,.pendant .help-faq{padding:4px 11px;position:relative;margin-bottom:1px;background:#00c250;cursor:pointer;}
 .pendant .mobile-data:hover,.pendant .gain-act:hover,.pendant .feed-back:hover,.pendant .help-faq:hover{background:#58D78C;}
 .pendant .mobile-data{border-top-left-radius:4px;border-top-right-radius:4px;}
