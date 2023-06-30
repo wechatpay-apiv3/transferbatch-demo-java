@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>商户转账到零钱演示</title>
+  <link href="css/common.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="page-panel">
+  <div class="topbar" id="gotop">
+    <div class="wrap">
+      <ul>
+        <li><a>消息中心</a></li>
+        <li><a>帮助中心</a></li>
+        <li>
+          <div class="profile-box">
+            <a class="profile-hd"></i>我的账号<i class="arrow"></i></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="header">
+    <div class="wrap">
+      <div class="logo">
+        <div class="main-logo">
+          <h2>商户转账到零钱演示</h2>
+        </div>
+        <div class="sub-logo"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-wrp">
+    <div class="container wrap">
+      <div class="sidebar">
+        <div class="menu">
+          <dl>
+            <dt>转账</dt>
+            <dd class="selected"><a>商户转账到零钱</a></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-hd">
+          <h2>转账结果</h2>
+          <form class="content-bd">
+            <div class="panel-box with-padding">
+              <div class="mb20">
+                <h2>行政补贴</h2>
+                <text class="gray">向用户发放补贴</text>
+              </div>
+              <div id="dataBox" class="form-items hide">
+                <div class="form-item">
+                  <label class="label">批次单号</label>
+                  <p class="desc" id="outBatchNo"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label">批次名称</label>
+                  <p class="desc" id="batchName"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label">转账说明</label>
+                  <p class="desc" id="batchRemark"></p>
+                </div>
+
+                <div class="form-item">
+                  <label class="label">转账总金额</label>
+                  <p class="desc" id="totalAmount"></p>
+                </div>
+
+                <div class="form-item">
+                  <label class="label">转账总笔数</label>
+                  <p class="desc" id="totalNum"></p>
+                </div>
+
+                <div id="transferDetailList">
+                </div>
+              </div>
+              <div id="loadingBox" class="with-loading"><i class="loading"></i></div>
+            </div>
+          </form>
+
+          <div class="info-box" id="transferDetailTemplate" style="display: none;">
+            <div class="info-hd">
+              <text id="transferDetailIndex">转账明细列表1</text>
+            </div>
+            <div class="info-bd">
+              <div class="form-items">
+                <div class="form-item">
+                  <label class="label">转账状态</label>
+                  <p class="desc" id="detailStatus"></p>
+                </div>
+                <div class="form-item" id="failReasonItem">
+                  <label class="label">失败原因</label>
+                  <p class="desc" id="failReason"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label">明细单号</label>
+                  <p class="desc" id="outDetailNo"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label" for="transferAmount">转账金额</label>
+                  <p class="desc" id="transferAmount"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label" for="transferRemark">转账备注</label>
+                  <p class="desc" id="transferRemark"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label">收款用户openid</label>
+                  <p class="desc" id="openid"></p>
+                </div>
+                <div class="form-item" id="userNameItem">
+                  <label class="label">收款方真实姓名</label>
+                  <p class="desc" id="userName"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/result.js"></script>
+</body>
+
+</html>
