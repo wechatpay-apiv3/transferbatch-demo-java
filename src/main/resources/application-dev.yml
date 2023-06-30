@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:sqlite::resource:db.sqlite # db.sqlite文件的本地路径
+    url: jdbc:sqlite:/Users/luciozhang/wepay/java-server/mch_transfer_api_demo/src/main/resources/db.sqlite # 创建的sqlite数据库所在路径
     type: org.sqlite.SQLiteDataSource
 # mybatis配置
 mybatis:

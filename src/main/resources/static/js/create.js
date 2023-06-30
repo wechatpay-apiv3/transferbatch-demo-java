@@ -39,7 +39,7 @@ function renderPage() {
 
 function bindEvent() {
   addBtn.addEventListener('click', addTransferDetail);
-  submitBtn.addEventListener('click', () => submitTransfer());
+  submitBtn.addEventListener('click', () => {void submitTransfer()});
   resultDialogBtn.addEventListener('click', gotoTransferResult);
 }
 
