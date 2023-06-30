@@ -63,13 +63,12 @@ function initData() {
 async function getTransferBatchData() {
   // 发送HTTP请求，查询批次单
   try {
-    const response = await fetch(
-        `/query-batch?outBatchNo=${batchData.outBatchNo}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
+    const response = await fetch(`/query-batch?outBatchNo=${batchData.outBatchNo}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
     if (!response.ok) {
       alert('查询批次详情失败');
@@ -81,9 +80,9 @@ async function getTransferBatchData() {
     batchData = resp.data
     if (batchData.batchStatus === 'FINISHED') { // 状态为finish再调用明细查询状态
       await Promise.all(batchData.transferDetailOrders.map(
-          async (item, index) => {
-            await getTransferDetailData(item.outDetailNo, index);
-          })
+        async (item, index) => {
+          await getTransferDetailData(item.outDetailNo, index);
+        })
       );
     } else {// 若批次还没有返回，明细状态为等待处理
       batchData.transferDetailOrders.forEach(item => {
@@ -100,14 +99,12 @@ async function getTransferBatchData() {
 async function getTransferDetailData(outDetailNo, index) {
   try {
     // 发送HTTP请求，查询批次单
-    const response = await fetch(
-        `/query-detail?outBatchNo=${batchData.outBatchNo}&outDetailNo=${outDetailNo}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
+    const response = await fetch(`/query-detail?outBatchNo=${batchData.outBatchNo}&outDetailNo=${outDetailNo}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
     if (!response.ok) {
       alert('查询订单情失败');
@@ -142,25 +139,18 @@ function renderTransferDetail(transferDetail, index) {
   const detailEl = detailElTemplate.cloneNode(true);
   detailEl.id = 'transferDetail';
   detailEl.style.display = 'block';
-  detailEl.querySelector(
-      '#transferDetailIndex').innerHTML = `转账明细列表${(index + 1)}`;
+  detailEl.querySelector('#transferDetailIndex').innerHTML = `转账明细列表${(index + 1)}`;
   detailEl.querySelector('#outDetailNo').innerText = transferDetail.outDetailNo;
-  detailEl.querySelector(
-      '#transferAmount').innerText = transferDetail.transferAmount;
-  detailEl.querySelector(
-      '#transferRemark').innerText = transferDetail.transferRemark;
+  detailEl.querySelector('#transferAmount').innerText = transferDetail.transferAmount;
+  detailEl.querySelector('#transferRemark').innerText = transferDetail.transferRemark;
   detailEl.querySelector('#openid').innerText = transferDetail.openid;
   detailEl.querySelector('#userName').innerText = transferDetail.userName || '';
   if (!transferDetail.userName || transferDetail.userName.length === 0) {
     detailEl.querySelector('#userNameItem').classList.add('hide');
   }
-  detailEl.querySelector(
-      '#detailStatus').innerText = BatchStatus[transferDetail.detailStatus]
-      || '';
-  detailEl.querySelector('#detailStatus').classList.add(
-      BatchStatusColor[transferDetail.detailStatus] || 'black');
-  detailEl.querySelector(
-      '#failReason').innerText = FailReason[transferDetail.failReason] || '';
+  detailEl.querySelector('#detailStatus').innerText = BatchStatus[transferDetail.detailStatus] || '';
+  detailEl.querySelector('#detailStatus').classList.add(BatchStatusColor[transferDetail.detailStatus] || 'black');
+  detailEl.querySelector('#failReason').innerText = FailReason[transferDetail.failReason] || '';
   if (!transferDetail.failReason || transferDetail.failReason.length === 0) {
     detailEl.querySelector('#failReasonItem').classList.add('hide');
   }
@@ -170,11 +160,12 @@ function renderTransferDetail(transferDetail, index) {
 function getQueryVariable(variable) {
   const query = window.location.search.substring(1);
   const vars = query.split('&');
-  for (let i = 0; i < vars.length; i++) {
-    const pair = vars[i].split('=');
-    if (pair[0] == variable) {
-      return pair[1];
+  let result = null;
+  vars.forEach((item) => {
+    const pair = item.split('=');
+    if (pair[0] === variable) {
+      result = pair[1];
     }
-  }
-  return null;
+  });
+  return result;
 }
