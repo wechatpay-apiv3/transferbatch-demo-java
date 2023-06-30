@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>商户转账到零钱演示</title>
+  <link href="css/common.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="page-panel">
+  <div class="topbar" id="gotop">
+    <div class="wrap">
+      <ul>
+        <li><a>消息中心</a></li>
+        <li><a>帮助中心</a></li>
+        <li>
+          <div class="profile-box">
+            <a class="profile-hd"></i>我的账号<i class="arrow"></i></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="header">
+    <div class="wrap">
+      <div class="logo">
+        <div class="main-logo">
+          <h2>商户转账到零钱演示</h2>
+        </div>
+        <div class="sub-logo"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-wrp">
+    <div class="container wrap">
+      <div class="sidebar">
+        <div class="menu">
+          <dl>
+            <dt>转账</dt>
+            <dd class="selected"><a>商户转账到零钱</a></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content-hd">
+          <h2>创建转账批次</h2>
+          <form class="content-bd" novalidate>
+            <div class="panel-box with-padding">
+              <div class="mb20">
+                <h2>行政补贴</h2>
+                <text class="gray">向用户发放补贴，请提交以下信息</text>
+              </div>
+              <div class="form-items">
+                <div class="form-item">
+                  <label class="label">批次单号</label>
+                  <p class="desc" id="outBatchNo"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label">批次名称</label>
+                  <p class="desc" id="batchName"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label">转账说明</label>
+                  <p class="desc" id="batchRemark"></p>
+                </div>
+
+                <div class="form-item">
+                  <label class="label">转账场景</label>
+                  <p class="desc" id="transferSceneId"></p>
+                </div>
+
+                <div id="transferDetailList">
+                </div>
+                <div class="green" id="addBtn">添加转账明细</div>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="button" id="submitBtn">提交</button>
+          </form>
+
+          <div class="info-box" id="transferDetailTemplate" style="display: none;">
+            <div class="info-hd">
+              <text id="transferDetailIndex">转账明细列表1</text>
+              <div id="deleteBtn" class="green fload-right">删除</div>
+            </div>
+            <div class="info-bd">
+              <div class="form-items" id="formBox">
+                <div class="form-item">
+                  <label class="label">明细单号</label>
+                  <p class="desc" id="outDetailNo"></p>
+                </div>
+                <div class="form-item">
+                  <label class="label" for="transferAmount">转账金额</label>
+                  <input class="ipt-box" type="number" min="1" max="20000" id="transferAmount" required>
+                  <p class="red ipt-tip on-invalid">转账金额必须是整数，范围在1～20000</p>
+                </div>
+                <div class="form-item">
+                  <label class="label" for="transferRemark">转账备注</label>
+                  <input class="ipt-box" type="text" id="transferRemark" maxlength="32" required>
+                  <p class="red ipt-tip on-invalid">请输入转账备注，长度不超过32个字符</p>
+                </div>
+                <div class="form-item">
+                  <label class="label">收款用户openid</label>
+                  <input class="ipt-box" type="text" id="openid" maxlength="32" required>
+                  <p class="red ipt-tip on-invalid">请输入收款用户openid</p>
+                </div>
+                <div class="form-item">
+                  <label class="label">收款方真实姓名（选填）</label>
+                  <input class="ipt-box" type="text" id="userName" maxlength="32">
+                  <p class="red ipt-tip on-invalid">长度不超过32个字符</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hide" id="resultDialog">
+    <div class="mask-layer"></div>
+    <div class="dialog">
+      <div class="dialog-bd align-center">
+        <div class="ico"><i class="ico-msg succ"></i></div>
+        <h4>已提交转账</h4>
+        <p>已提交系统处理，处理完成将会返回转账结果</p>
+      </div>
+      <div class="dialog-ft">
+        <a class="btn btn-default" id="resultDialogBtn">完成</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hide" id="loadingDialog">
+    <div class="mask-layer"></div>
+    <div class="dialog with-loading">
+      <div class="loading mb20"></div>
+      <div>正在提交，请稍候</div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/create.js"></script>
+</body>
+
+</html>

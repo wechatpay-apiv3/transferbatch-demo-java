@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="transfer.mapper.BatchTransferOrderMapper">
+    <resultMap id="BatchTransferOrderMapper" type="transfer.dto.BatchTransferOrderEntity">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="mchid" jdbcType="VARCHAR" property="mchid"/>
+        <result column="outBatchNo" jdbcType="VARCHAR" property="outBatchNo"/>
+        <result column="batchId" jdbcType="VARCHAR" property="batchId"/>
+        <result column="batchStatus" jdbcType="VARCHAR" property="batchStatus"/>
+        <result column="appid" jdbcType="VARCHAR" property="appid"/>
+        <result column="batchName" jdbcType="VARCHAR" property="batchName"/>
+        <result column="batchRemark" jdbcType="VARCHAR" property="batchRemark"/>
+        <result column="closeReason" jdbcType="VARCHAR" property="closeReason"/>
+        <result column="totalAmount" jdbcType="INTEGER" property="totalAmount"/>
+        <result column="totalNum" jdbcType="INTEGER" property="totalNum"/>
+        <result column="transferSceneId" jdbcType="VARCHAR" property="transferSceneId"/>
+    </resultMap>
+
+    <select id="query" resultType="transfer.dto.BatchTransferOrderEntity">
+        select *
+        from batch_transfer_order
+        where mchid = #{mchid}
+          and outBatchNo = #{outBatchNo}
+    </select>
+    <insert id="create" parameterType="transfer.dto.BatchTransferOrderEntity">
+        insert into batch_transfer_order (mchid, outBatchNo, appid, batchName, batchRemark,
+                                          totalAmount, totalNum, transferSceneId, batchStatus)
+        values (#{mchid}, #{outBatchNo}, #{appid}, #{batchName}, #{batchRemark}, #{totalAmount},
+                #{totalNum}, #{transferSceneId}, "INIT")
+    </insert>
+    <update id="update" parameterType="transfer.dto.BatchTransferOrderEntity">
+        update batch_transfer_order
+        set batchStatus=#{batchStatus},
+            closeReason=#{closeReason}
+        where mchid = #{mchid}
+          and outBatchNo = #{outBatchNo}
+    </update>
+</mapper>

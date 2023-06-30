@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:sqlite::resource:db.sqlite # db.sqlite文件的本地路径
+    type: org.sqlite.SQLiteDataSource
+# mybatis配置
+mybatis:
+  mapper-locations: classpath*:mybatis/*.xml # 配置mapper.xml文件路径
+  type-aliases-package: transfer.domain.entity # 实体类包名
