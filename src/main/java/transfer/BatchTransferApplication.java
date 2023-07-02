@@ -8,8 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("transfer.mapper")
 public class BatchTransferApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BatchTransferApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(BatchTransferApplication.class, args);
+  }
 }
