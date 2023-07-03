@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "com.diffplug.spotless" version "6.19.0"
     id "org.sonarqube" version "4.2.1.3168"
     id 'org.springframework.boot' version '2.5.6'
     id 'io.spring.dependency-management' version '1.1.0'
@@ -22,14 +23,16 @@ dependencies {
     implementation group: 'javax.annotation', name: 'jsr250-api', version: '1.0'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
 sonarqube {
     properties {
-        property "sonar.projectKey", "wujunjiesd_transferbatch-demo-java"
-        property "sonar.organization", "wujunjiesd"
+        property "sonar.projectKey", "wechatpay-apiv3_transferbatch-demo-java"
+        property "sonar.organization", "wechatpay-apiv3"
         property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
     }
 }
