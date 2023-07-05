@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import transfer.dto.BatchTransferOrderEntity;
 import transfer.dto.BusinessException;
+import transfer.dto.MerchantConfig;
 import transfer.dto.TransferDetailOrderEntity;
 import transfer.infrastructure.Comm;
-import transfer.infrastructure.MerchantConfig;
 import transfer.mapper.BatchTransferOrderMapper;
 import transfer.mapper.TransferDetailOrderMapper;
 import transfer.service.BatchTransferOrder;
@@ -24,6 +24,7 @@ import transfer.service.BatchTransferOrder;
 public class BatchTransferOrderImpl implements BatchTransferOrder {
   @Autowired BatchTransferOrderMapper batchTransferOrderMapper;
   @Autowired TransferDetailOrderMapper transferDetailOrderMapper;
+  @Autowired MerchantConfig merchantConfig;
 
   /**
    * 创建批次转账单
@@ -63,7 +64,7 @@ public class BatchTransferOrderImpl implements BatchTransferOrder {
   public BatchTransferOrderEntity queryBatchTransferOrder(String outBatchNo) {
     // 1、从DB中查询批次单
     BatchTransferOrderEntity batchTransferOrder =
-        batchTransferOrderMapper.query(MerchantConfig.MCHID, outBatchNo);
+        batchTransferOrderMapper.query(merchantConfig.getMchid(), outBatchNo);
     // 2、DB中批次单如果不是终态，则调用微信支付查询批次单最新状态并更新DB
     if (!batchTransferOrder.getBatchStatus().equals("FINISHED")
         || !batchTransferOrder.getBatchStatus().equals("CLOSED")) {
@@ -71,7 +72,7 @@ public class BatchTransferOrderImpl implements BatchTransferOrder {
     }
     // 3、调用明细单仓储查询明细单
     ArrayList<TransferDetailOrderEntity> detailOrders =
-        transferDetailOrderMapper.find(MerchantConfig.MCHID, outBatchNo);
+        transferDetailOrderMapper.find(merchantConfig.getMchid(), outBatchNo);
     batchTransferOrder.setTransferDetailOrders(detailOrders);
     return batchTransferOrder;
   }
@@ -83,7 +84,7 @@ public class BatchTransferOrderImpl implements BatchTransferOrder {
    */
   private void processBatchTransfer(BatchTransferOrderEntity batchTransferOrderEntity) {
     TransferBatchService service =
-        new TransferBatchService.Builder().config(MerchantConfig.getRSAConfig()).build();
+        new TransferBatchService.Builder().config(merchantConfig.getRSAConfig()).build();
     InitiateBatchTransferRequest request = new InitiateBatchTransferRequest();
     // 构造请求微信支付发起转账的参数
     request.setBatchName(batchTransferOrderEntity.getBatchName());
@@ -124,7 +125,7 @@ public class BatchTransferOrderImpl implements BatchTransferOrder {
    */
   private void refreshTransferBatchOrderStatus(BatchTransferOrderEntity batchTransferOrder) {
     TransferBatchService service =
-        new TransferBatchService.Builder().config(MerchantConfig.getRSAConfig()).build();
+        new TransferBatchService.Builder().config(merchantConfig.getRSAConfig()).build();
     GetTransferBatchByOutNoRequest request = new GetTransferBatchByOutNoRequest();
     request.setOutBatchNo(batchTransferOrder.getOutBatchNo());
     request.setNeedQueryDetail(Boolean.FALSE);

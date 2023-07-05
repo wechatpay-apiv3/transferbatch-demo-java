@@ -7,7 +7,6 @@ public class TransferDetailInput {
   private Long transferAmount;
   private String transferRemark;
   private String openid;
-  private String userName;
 
   public String getOutDetailNo() {
     return outDetailNo;
@@ -39,13 +38,5 @@ public class TransferDetailInput {
 
   public void setOpenid(String openid) {
     this.openid = openid;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 }

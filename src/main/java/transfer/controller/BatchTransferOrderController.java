@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import transfer.dto.BatchTransferOrderEntity;
 import transfer.dto.BusinessException;
 import transfer.dto.CreateBatchRequest;
+import transfer.dto.MerchantConfig;
 import transfer.dto.QueryBatchResponse;
 import transfer.dto.QueryDetailResponse;
 import transfer.dto.ResponseMessage;
 import transfer.dto.TransferDetailInput;
 import transfer.dto.TransferDetailOrderEntity;
 import transfer.infrastructure.Comm;
-import transfer.infrastructure.MerchantConfig;
 import transfer.service.BatchTransferOrder;
 import transfer.service.TransferDetailOrder;
 
@@ -27,6 +27,7 @@ public class BatchTransferOrderController {
 
   @Autowired private BatchTransferOrder batchTransferOrder;
   @Autowired private TransferDetailOrder transferDetailOrder;
+  @Autowired private MerchantConfig merchantConfig;
 
   /**
    * 发起批次转账
@@ -38,9 +39,9 @@ public class BatchTransferOrderController {
   public ResponseMessage createBatch(@RequestBody CreateBatchRequest batchInfo) {
     // 1、构造请求参数
     BatchTransferOrderEntity batchTransferOrderEntity = new BatchTransferOrderEntity();
-    batchTransferOrderEntity.setMchid(MerchantConfig.MCHID);
+    batchTransferOrderEntity.setMchid(merchantConfig.getMchid());
     batchTransferOrderEntity.setOutBatchNo(batchInfo.getOutBatchNo());
-    batchTransferOrderEntity.setAppid(MerchantConfig.APPID);
+    batchTransferOrderEntity.setAppid(merchantConfig.getAppid());
     batchTransferOrderEntity.setBatchName(batchInfo.getBatchName());
     batchTransferOrderEntity.setBatchRemark(batchInfo.getBatchRemark());
     batchTransferOrderEntity.setTransferSceneId(batchInfo.getTransferSceneId());
@@ -49,14 +50,13 @@ public class BatchTransferOrderController {
     ArrayList<TransferDetailOrderEntity> transferDetailOrderEntities = new ArrayList<>();
     for (TransferDetailInput item : batchInfo.getTransferDetailList()) {
       TransferDetailOrderEntity detail = new TransferDetailOrderEntity();
-      detail.setMchid(MerchantConfig.MCHID);
+      detail.setMchid(merchantConfig.getMchid());
       detail.setOutBatchNo(batchInfo.getOutBatchNo());
-      detail.setAppid(MerchantConfig.APPID);
+      detail.setAppid(merchantConfig.getAppid());
       detail.setOutDetailNo(item.getOutDetailNo());
       detail.setTransferAmount(item.getTransferAmount());
       detail.setTransferRemark(item.getTransferRemark());
       detail.setOpenid(item.getOpenid());
-      detail.setUserName(item.getUserName());
       transferDetailOrderEntities.add(detail);
     }
     batchTransferOrderEntity.setTransferDetailOrders(transferDetailOrderEntities);
@@ -102,7 +102,6 @@ public class BatchTransferOrderController {
       detailResponse.setTransferRemark(item.getTransferRemark());
       detailResponse.setFailReason(item.getFailReason());
       detailResponse.setTransferAmount(item.getTransferAmount());
-      detailResponse.setUserName(item.getUserName());
       detailResponses.add(detailResponse);
     }
     resp.setTransferDetailOrders(detailResponses);
@@ -136,7 +135,6 @@ public class BatchTransferOrderController {
     response.setDetailStatus(transferDetailOrderEntity.getDetailStatus());
     response.setOpenid(transferDetailOrderEntity.getOpenid());
     response.setFailReason(transferDetailOrderEntity.getFailReason());
-    response.setUserName(transferDetailOrderEntity.getUserName());
     return new ResponseMessage(Comm.SUCCESS, "", response);
   }
 }
