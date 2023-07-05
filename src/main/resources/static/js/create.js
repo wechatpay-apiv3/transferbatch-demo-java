@@ -34,12 +34,12 @@ function renderPage() {
   document.getElementById('batchName').innerText = batchData.batchName;
   document.getElementById('batchRemark').innerText = batchData.batchRemark;
   document.getElementById(
-      'transferSceneId').innerText = TransferScene[batchData.transferSceneId];
+    'transferSceneId').innerText = TransferScene[batchData.transferSceneId];
 }
 
 function bindEvent() {
   addBtn.addEventListener('click', addTransferDetail);
-  submitBtn.addEventListener('click', () => {void submitTransfer()});
+  submitBtn.addEventListener('click', () => { void submitTransfer() });
   resultDialogBtn.addEventListener('click', gotoTransferResult);
 }
 
@@ -66,7 +66,6 @@ function addTransferDetail() {
     transferAmount: '',
     transferRemark: '',
     openid: '',
-    userName: ''
   }
   if (batchData.totalNum >= 1000) {
     alert('一个转账批次单最多发起一千笔转账');
@@ -85,19 +84,18 @@ function renderTransferDetail(transferDetail, index) {
   detailEl.id = 'transferDetail';
   detailEl.style.display = 'block';
   detailEl.querySelector('#transferDetailIndex').innerHTML = '转账明细列表'
-      + (index + 1);
+    + (index + 1);
   detailEl.querySelector('#outDetailNo').innerText = transferDetail.outDetailNo;
   detailEl.querySelector(
-      '#transferAmount').value = transferDetail.transferAmount;
+    '#transferAmount').value = transferDetail.transferAmount;
   detailEl.querySelector(
-      '#transferRemark').value = transferDetail.transferRemark;
+    '#transferRemark').value = transferDetail.transferRemark;
   detailEl.querySelector('#openid').value = transferDetail.openid;
-  detailEl.querySelector('#userName').value = transferDetail.userName;
   detailEl.querySelector('#outDetailNo').innerText = transferDetail.outDetailNo;
   detailEl.querySelector('#transferAmount').addEventListener('change',
-      checkInput);
+    checkInput);
   detailEl.querySelector('#transferRemark').addEventListener('change',
-      checkInput);
+    checkInput);
   detailEl.querySelector('#openid').addEventListener('change', checkInput);
   detailEl.querySelector('#deleteBtn').addEventListener('click', () => {
     if (batchData.totalNum <= 1) {
@@ -116,9 +114,9 @@ function renderTransferDetail(transferDetail, index) {
 
 function renderDeleteBtn() {
   document.querySelectorAll('#transferDetailIndex').forEach(
-      (indexEl, index) => {
-        indexEl.innerHTML = '转账明细列表' + (index + 1);
-      });
+    (indexEl, index) => {
+      indexEl.innerHTML = '转账明细列表' + (index + 1);
+    });
   if (batchData.totalNum <= 1) {
     document.querySelectorAll('#deleteBtn').forEach(deleteBtnEl => {
       deleteBtnEl.classList.add('hide');
@@ -128,6 +126,7 @@ function renderDeleteBtn() {
       deleteBtnEl.classList.remove('hide');
     });
   }
+  checkInput();
 }
 
 async function submitTransfer() {
@@ -180,7 +179,6 @@ function getFormData() {
       transferAmount: Number(detailEl.querySelector('#transferAmount').value),
       transferRemark: detailEl.querySelector('#transferRemark').value,
       openid: detailEl.querySelector('#openid').value,
-      userName: detailEl.querySelector('#userName').value,
     };
     formData.transferDetailList.push(detail);
     formData.totalAmount += detail.transferAmount;
@@ -194,9 +192,8 @@ function isValidForm() {
   const detailElList = document.querySelectorAll('#transferDetail');
   detailElList.forEach(detailEl => {
     if (!(detailEl.querySelector('#transferAmount').checkValidity() &&
-        detailEl.querySelector('#transferRemark').checkValidity() &&
-        detailEl.querySelector('#openid').checkValidity() &&
-        detailEl.querySelector('#userName').checkValidity)) {
+      detailEl.querySelector('#transferRemark').checkValidity() &&
+      detailEl.querySelector('#openid').checkValidity())) {
       isValid = false;
       const formBoxEl = detailEl.querySelector('#formBox');
       formBoxEl.classList.add('check-box');
@@ -210,8 +207,8 @@ function isRequireInputValid() {
   const detailElList = document.querySelectorAll('#transferDetail');
   detailElList.forEach(detailEl => {
     if (!(detailEl.querySelector('#transferAmount').value.length &&
-        detailEl.querySelector('#transferRemark').value.length &&
-        detailEl.querySelector('#openid').value.length)) {
+      detailEl.querySelector('#transferRemark').value.length &&
+      detailEl.querySelector('#openid').value.length)) {
       isValid = false;
     }
   });

@@ -21,6 +21,16 @@ a:hover{text-decoration:underline;}
 a.disabled{color:#999;cursor:default;text-decoration:none;}
 a.disabled:hover{text-decoration:none;}
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0; 
+}
+input[type=number] {
+  appearance:textfield;
+  -moz-appearance:textfield;
+}
+
 /* 背景 */
 .ico-msg,.ico-msg-s,.ico-msg-l,.ico-new,.ico-hot,.ico-top,.ico-rdo,.ico-cbx,.ico-exp,.ico-xls,.ico-txt,.ico-rar,.ico-add,.ico-refresh,.topbar .ico-news,.btn-zoom,.btn-clear,.topbar .ico-help,.topbar .ico-docu,.topbar .ico-search,.bread-crumb .ico-goback,.choice-tab .ico-tick,.datepicker-switch .ico-date,.dialog .ico-cls,.pendant .ico-edit,.pendant .ico-down,.pendant .ico-miniapp,.step-list .step-icon,.upload-box .del,.panel-card .horn,.scan-qrcode .qrcode-img .ico{display:inline-block;background:url("../image/sprite.png") no-repeat;}
 

@@ -144,10 +144,6 @@ function renderTransferDetail(transferDetail, index) {
   detailEl.querySelector('#transferAmount').innerText = transferDetail.transferAmount;
   detailEl.querySelector('#transferRemark').innerText = transferDetail.transferRemark;
   detailEl.querySelector('#openid').innerText = transferDetail.openid;
-  detailEl.querySelector('#userName').innerText = transferDetail.userName || '';
-  if (!transferDetail.userName || transferDetail.userName.length === 0) {
-    detailEl.querySelector('#userNameItem').classList.add('hide');
-  }
   detailEl.querySelector('#detailStatus').innerText = BatchStatus[transferDetail.detailStatus] || '';
   detailEl.querySelector('#detailStatus').classList.add(BatchStatusColor[transferDetail.detailStatus] || 'black');
   detailEl.querySelector('#failReason').innerText = FailReason[transferDetail.failReason] || '';
