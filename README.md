@@ -1,7 +1,7 @@
 # 发起商家转账演示Demo
 ## 简介
 [商家转账](https://pay.weixin.qq.com/docs/merchant/apis/batch-transfer-to-balance/transfer-batch/initiate-batch-transfer.html)是商户同时向多个用户微信零钱进行转账的操作，本项目是为便于商户和开发者快速理解业务、降低接入门槛而开发的演示Demo，运行后界面如下：
-![Demo演示.gif](src%2Fmain%2Fresources%2Fstatic%2Fimage%2FDemo%E6%BC%94%E7%A4%BA.gif)
+![demo.gif](src%2Fmain%2Fresources%2Fstatic%2Fimage%2Fdemo.gif)
 ### 通过该Demo你可以：<br>
 1）直观的了解商家转账功能；<br>
 2）商户的产品人员设计商家转账功能时可以参考演示Demo的界面设计；<br>
