@@ -16,4 +16,4 @@ envconfig:
     appid: ${APPID}
     private-key: ${PRIVATE_KEY}
     serial-number: ${SERIAL_NUMBER}
-    wechat-pay-certificates: ${WECHAT_PAY_CERTIFICATES}
+    apiv3-key: ${APIV3_KEY}

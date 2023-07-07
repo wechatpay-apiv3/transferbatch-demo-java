@@ -1,6 +1,6 @@
 package transfer.dto;
 
-import com.wechat.pay.java.core.RSAConfig;
+import com.wechat.pay.java.core.RSAAutoCertificateConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -40,12 +40,12 @@ public class MerchantConfig {
     this.serialNumber = serialNumber;
   }
 
-  public String getWechatPayCertificates() {
-    return wechatPayCertificates;
+  public String getApiV3Key() {
+    return apiV3Key;
   }
 
-  public void setWechatPayCertificates(String wechatPayCertificates) {
-    this.wechatPayCertificates = wechatPayCertificates;
+  public void setApiV3Key(String apiV3Key) {
+    this.apiV3Key = apiV3Key;
   }
 
   @Value("${mchid}")
@@ -60,15 +60,26 @@ public class MerchantConfig {
   @Value("${serial-number}")
   private String serialNumber;
 
-  @Value("${wechat-pay-certificates}")
-  private String wechatPayCertificates;
+  @Value("${apiv3-key}")
+  private String apiV3Key;
 
-  public RSAConfig getRSAConfig() {
-    return new RSAConfig.Builder()
-        .merchantId(mchid)
-        .privateKey(privateKey)
-        .merchantSerialNumber(serialNumber)
-        .wechatPayCertificates(wechatPayCertificates)
-        .build();
+  volatile private static RSAAutoCertificateConfig config = null;
+
+  public RSAAutoCertificateConfig getRSAConfig() {
+    if (config == null) {
+      // 同一个商户号构造多个实例，会抛出IllegalStateException异常
+      synchronized (MerchantConfig.class) {
+        if (config == null) {
+          config =
+              new RSAAutoCertificateConfig.Builder()
+                  .merchantId(mchid)
+                  .privateKey(privateKey)
+                  .merchantSerialNumber(serialNumber)
+                  .apiV3Key(apiV3Key)
+                  .build();
+        }
+      }
+    }
+    return config;
   }
 }
