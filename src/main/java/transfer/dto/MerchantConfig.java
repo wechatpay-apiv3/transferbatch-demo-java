@@ -63,7 +63,7 @@ public class MerchantConfig {
   @Value("${apiv3-key}")
   private String apiV3Key;
 
-  volatile private static RSAAutoCertificateConfig config = null;
+  private static volatile RSAAutoCertificateConfig config = null;
 
   public RSAAutoCertificateConfig getRSAConfig() {
     if (config == null) {
