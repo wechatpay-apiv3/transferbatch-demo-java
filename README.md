@@ -7,7 +7,7 @@
 - gradle-8.0
 ## 使用入门
 ### 1、下载代码
-`git clone https://github.com/wujunjiesd/transferbatch-demo-java.git`
+`git clone https://github.com/wechatpay-apiv3/transferbatch-demo-java.git`
 ### 2、补充信息
 打开src/main/java/transfer/infrastructure/MerchantConfig.java文件，按照注释说明补充MCHID、APPID、PRIVATE_KEY、SERIAL_NUMBER、CERTIFICATES的值。
 ### 3、运行项目
