@@ -14,7 +14,6 @@ public class TransferDetailOrderEntity {
   private String transferRemark;
   private String failReason;
   private String openid;
-  private String userName;
 
   public Integer getId() {
     return id;
@@ -102,13 +101,5 @@ public class TransferDetailOrderEntity {
 
   public void setOpenid(String openid) {
     this.openid = openid;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 }

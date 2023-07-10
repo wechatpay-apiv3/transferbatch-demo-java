@@ -9,7 +9,6 @@ public class QueryDetailResponse {
   private String transferRemark;
   private String failReason;
   private String openid;
-  private String userName;
 
   public String getOutDetailNo() {
     return outDetailNo;
@@ -57,13 +56,5 @@ public class QueryDetailResponse {
 
   public void setOpenid(String openid) {
     this.openid = openid;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 }

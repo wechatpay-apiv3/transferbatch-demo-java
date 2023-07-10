@@ -4,7 +4,16 @@ spring:
   datasource:
     url: jdbc:sqlite::resource:db.sqlite # db.sqlite文件的本地路径
     type: org.sqlite.SQLiteDataSource
+  config:
+    import: optional:file:.env[.properties]
 # mybatis配置
 mybatis:
   mapper-locations: classpath*:mybatis/*.xml # 配置mapper.xml文件路径
   type-aliases-package: transfer.domain.entity # 实体类包名
+# 配置信息
+envconfig:
+    mchid: ${MCHID}
+    appid: ${APPID}
+    private-key: ${PRIVATE_KEY}
+    serial-number: ${SERIAL_NUMBER}
+    apiv3-key: ${APIV3_KEY}

@@ -8,9 +8,9 @@ import com.wechat.pay.java.service.transferbatch.model.TransferDetailEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import transfer.dto.BusinessException;
+import transfer.dto.MerchantConfig;
 import transfer.dto.TransferDetailOrderEntity;
 import transfer.infrastructure.Comm;
-import transfer.infrastructure.MerchantConfig;
 import transfer.mapper.TransferDetailOrderMapper;
 import transfer.service.TransferDetailOrder;
 
@@ -18,6 +18,7 @@ import transfer.service.TransferDetailOrder;
 public class TransferDetailOrderImpl implements TransferDetailOrder {
 
   @Autowired TransferDetailOrderMapper transferDetailOrderMapper;
+  @Autowired MerchantConfig merchantConfig;
 
   /**
    * 查询明细单
@@ -30,7 +31,7 @@ public class TransferDetailOrderImpl implements TransferDetailOrder {
   public TransferDetailOrderEntity queryTransferDetailOrder(String outBatchNo, String outDetailNo) {
     // 1、调用明细单仓储查询明细单状态
     TransferDetailOrderEntity transferDetailOrderEntity =
-        transferDetailOrderMapper.query(MerchantConfig.MCHID, outBatchNo, outDetailNo);
+        transferDetailOrderMapper.query(merchantConfig.getMchid(), outBatchNo, outDetailNo);
     if (transferDetailOrderEntity.getDetailStatus().equals(Comm.SUCCESS)
         || transferDetailOrderEntity.getDetailStatus().equals(Comm.FAIL)) {
       return transferDetailOrderEntity;
@@ -47,7 +48,7 @@ public class TransferDetailOrderImpl implements TransferDetailOrder {
    */
   private void refreshTransferDetailOrder(TransferDetailOrderEntity transferDetailOrderEntity) {
     TransferBatchService service =
-        new TransferBatchService.Builder().config(MerchantConfig.getRSAConfig()).build();
+        new TransferBatchService.Builder().config(merchantConfig.getRSAConfig()).build();
     GetTransferDetailByOutNoRequest request = new GetTransferDetailByOutNoRequest();
     request.setOutBatchNo(transferDetailOrderEntity.getOutBatchNo());
     request.setOutDetailNo(transferDetailOrderEntity.getOutDetailNo());

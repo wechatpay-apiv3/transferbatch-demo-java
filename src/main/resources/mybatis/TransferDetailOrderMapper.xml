@@ -14,7 +14,6 @@
         <result column="transferRemark" jdbcType="VARCHAR" property="transferRemark"/>
         <result column="failReason" jdbcType="INTEGER" property="failReason"/>
         <result column="openid" jdbcType="INTEGER" property="openid"/>
-        <result column="userName" jdbcType="VARCHAR" property="userName"/>
     </resultMap>
 
     <select id="query" resultType="transfer.dto.TransferDetailOrderEntity">
@@ -32,9 +31,9 @@
     </select>
     <insert id="create" parameterType="transfer.dto.BatchTransferOrderEntity">
         insert into transfer_detail_order (mchid, outBatchNo, appid, outDetailNo, transferAmount,
-                                           transferRemark, openid, userName, detailStatus)
+                                           transferRemark, openid, detailStatus)
         values (#{mchid}, #{outBatchNo}, #{appid}, #{outDetailNo}, #{transferAmount},
-                #{transferRemark}, #{openid}, #{userName}, "INIT")
+                #{transferRemark}, #{openid}, "INIT")
     </insert>
     <update id="update" parameterType="transfer.dto.BatchTransferOrderEntity">
         update transfer_detail_order
