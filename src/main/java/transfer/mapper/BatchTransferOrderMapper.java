@@ -1,6 +1,7 @@
 package transfer.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import transfer.dto.BatchTransferOrderEntity;
 
@@ -9,7 +10,8 @@ import transfer.dto.BatchTransferOrderEntity;
 @Repository
 public interface BatchTransferOrderMapper {
 
-  BatchTransferOrderEntity query(String mchid, String outBatchNo);
+  BatchTransferOrderEntity query(
+      @Param("mchid") String mchid, @Param("outBatchNo") String outBatchNo);
 
   void create(BatchTransferOrderEntity entity);
 

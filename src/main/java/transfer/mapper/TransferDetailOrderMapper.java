@@ -2,6 +2,7 @@ package transfer.mapper;
 
 import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import transfer.dto.TransferDetailOrderEntity;
 
@@ -10,9 +11,13 @@ import transfer.dto.TransferDetailOrderEntity;
 @Repository
 public interface TransferDetailOrderMapper {
 
-  TransferDetailOrderEntity query(String mchid, String outBatchNo, String outDetailNo);
+  TransferDetailOrderEntity query(
+      @Param("mchid") String mchid,
+      @Param("outBatchNo") String outBatchNo,
+      @Param("outDetailNo") String outDetailNo);
 
-  ArrayList<TransferDetailOrderEntity> find(String mchid, String outBatchNo);
+  ArrayList<TransferDetailOrderEntity> find(
+      @Param("mchid") String mchid, @Param("outBatchNo") String outBatchNo);
 
   void create(TransferDetailOrderEntity entity);
 

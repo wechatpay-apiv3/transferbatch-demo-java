@@ -14,6 +14,6 @@ mybatis:
 envconfig:
     mchid: ${MCHID}
     appid: ${APPID}
-    private-key: ${PRIVATE_KEY}
+    private-key-path: ${PRIVATE_KEY_PATH}
     serial-number: ${SERIAL_NUMBER}
     apiv3-key: ${APIV3_KEY}
