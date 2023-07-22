@@ -24,12 +24,12 @@ public class MerchantConfig {
     this.appid = appid;
   }
 
-  public String getPrivateKey() {
-    return privateKey;
+  public String getPrivateKeyPath() {
+    return privateKeyPath;
   }
 
-  public void setPrivateKey(String privateKey) {
-    this.privateKey = privateKey;
+  public void setPrivateKeyPath(String privateKeyPath) {
+    this.privateKeyPath = privateKeyPath;
   }
 
   public String getSerialNumber() {
@@ -54,8 +54,8 @@ public class MerchantConfig {
   @Value("${appid}")
   private String appid;
 
-  @Value("${private-key}")
-  private String privateKey;
+  @Value("${private-key-path}")
+  private String privateKeyPath;
 
   @Value("${serial-number}")
   private String serialNumber;
@@ -73,7 +73,7 @@ public class MerchantConfig {
           config =
               new RSAAutoCertificateConfig.Builder()
                   .merchantId(mchid)
-                  .privateKey(privateKey)
+                  .privateKeyFromPath(privateKeyPath)
                   .merchantSerialNumber(serialNumber)
                   .apiV3Key(apiV3Key)
                   .build();

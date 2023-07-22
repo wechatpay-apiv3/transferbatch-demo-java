@@ -18,11 +18,14 @@
 ## 使用入门
 ### 1、下载代码
 `git clone https://github.com/wujunjiesd/transferbatch-demo-java.git`
-### 2、补充信息
-复制.env.example文件为[.env](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.external-config)，按照注释说明补充信息。
-### 3、运行项目
+### 2、创建.env文件
+`cd transferbatch-demo-java`<br>
+`cp .env.example .env`
+### 3、完善.env内容
+打开[.env](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.external-config)文件，按照注释说明填写配置信息。
+### 4、运行项目
 `gradle bootRun`
-### 4、体验Demo
+### 5、体验Demo
 在浏览器输入：http://localhost:8080/create.html
 
 ## 常见问题
