@@ -1,6 +1,6 @@
 package transfer.dto;
 
-// 创建批次单入餐
+// 创建批次单入参
 public class TransferDetailInput {
 
   private String outDetailNo;
